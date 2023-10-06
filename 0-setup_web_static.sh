@@ -15,7 +15,7 @@ then
 	sudo rm /data/web_static/current
 fi
 #link two files
-ln -s /data/web_static/releases/test/ /data/web_static/current
+sudo ln -sf /data/web_static/releases/test/ /data/web_static/current
 #change ownership
 chown -R ubuntu:ubuntu /data/
 if ! grep -q "location localhost/hbnb_static {" /etc/nginx/sites-available/default; then
