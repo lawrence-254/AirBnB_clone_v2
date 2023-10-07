@@ -4,6 +4,9 @@ a Fabric script that generates a .tgz archive
 from the contents of the web_static folder
 """
 import os
+from fabric.api import run
+from fabric.api import put
+from fabric.api import env
 from fabric.api import local
 from datetime import datetime
 
@@ -19,29 +22,48 @@ def do_pack():
 
 	return "versions/" + archive_name if archive.succeeded else None
 
+env.hosts = ['52.91.152.165', '3.85.33.67']
+env.user = 'ubuntu'
+env.key_filename = '~/.ssh/id_rsa.pem'
+
 def do_deploy(archive_path):
-	"""deploys to server"""
-    return not os.path.isfile(archive_path)
+    """Distribute an archive to the web servers and deploy it"""
 
-    flnme = archive_path.split('/')[-1]
-    tmp_arc_path = "/tmp/" + flnme
-    data_arc_path = "/data/web_static/releases/{}"\
-        .format(flname.split('.')[0])
+    if not os.path.exists(archive_path):
+        return False
 
-    put(archive_path, tmp_arc_path)
-    commands = ["mkdir -p {}/".format(data_arc_path),
-                "tar -xzf {} -C {}/".format(tmp_arc_path, data_arc_path),
-                "rm " + tmp_arc_path,
-                "mv {}/web_static/* {}/".format(data_arc_path, data_arc_path),
-                "rm -rf {}/web_static".format(data_arc_path),
-                "rm -rf /data/web_static/current",
-                "ln -s {}/ /data/web_static/current".format(data_arc_path)
-                ]
-    for command in commands:
-        r = run(command)
-        if r.failed:
-            return False
+    try:
+        archive_name = os.path.basename(archive_path)
+        release_dir = "/data/web_static/releases/"
+        release_folder = "{}{}".format(release_dir, archive_name[:-4])
+        current_dir = "/data/web_static/current"
 
-    print("New version deployed!")
+        put(archive_path, "/tmp/")
+        
+        # Create the release directory
+        run("mkdir -p {}".format(release_folder))
+        
+        # Uncompress the archive into the release folder
+        run("tar -xzf /tmp/{} -C {}".format(archive_name, release_folder))
+        
+        # Delete the uploaded archive
+        run("rm /tmp/{}".format(archive_name))
+        
+        # Move the contents from the release folder to current folder
+        run("mv {}/web_static/* {}".format(release_folder, release_folder))
+        
+        # Remove the empty web_static folder
+        run("rm -rf {}/web_static".format(release_folder))
+        
+        # Delete the symbolic link 'current'
+        run("rm -rf {}".format(current_dir))
+        
+        # Create a new symbolic link
+        run("ln -s {} {}".format(release_folder, current_dir))
+        
+        print("New version deployed!")
+        return True
 
-    return True
+    except Exception as e:
+        print(e)
+        return False
