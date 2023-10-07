@@ -9,7 +9,8 @@ from datetime import datetime
 
 
 def do_pack():
-	"""generates a .tgz archive from the contents of the web_static folder
+	"""
+	generates a .tgz archive from the contents of the web_static folder
 	"""
 	time = datetime.now().strftime("%Y%m%d%H%M%S")
 	os.makedirs("versions") if not os.path.exists("versions") else None
