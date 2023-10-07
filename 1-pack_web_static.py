@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """
-A Fabric script that generates a .tgz archive from the contents of the web_static folder.
+A Fabric script that generates a .tgz archive from the contents
+of the web_static folder.
 """
 import os
 from fabric.api import local
@@ -9,8 +10,7 @@ from datetime import datetime
 
 def do_pack():
     """
-    Generates a .tgz archive from the contents of the web_static folder.
-    
+    Generates a .tgz archive from the contents of the web_static folder.    
     Returns:
         str: Path to the created archive or None if the operation fails.
     """
@@ -31,4 +31,3 @@ def do_pack():
 
 if __name__ == "__main__":
     do_pack()
-
