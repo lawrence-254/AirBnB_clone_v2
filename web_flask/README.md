@@ -1,54 +1,44 @@
-0x02. AirBnB clone - MySQL
-Group project
+0x04. AirBnB clone - Web framework
 Python
-OOP
 Back-end
-SQL
-MySQL
-ORM
-SQLAlchemy
- By: Guillaume
+Webserver
+Flask
+ By: Guillaume, CTO at Holberton School
  Weight: 2
- Project to be done in teams of 2 people (your team: Lawrence Odhiambo, Amr Mostafa)
- Project over - took place from Sep 15, 2023 6:00 AM to Sep 21, 2023 6:00 AM
+ Project will start Oct 19, 2023 6:00 AM, must end by Oct 23, 2023 6:00 AM
+ Checker was released at Oct 20, 2023 6:00 AM
+ Manual QA review must be done (request it when you are done with the project)
  An auto review will be launched at the deadline
-In a nutshell
-Auto QA review: 68.6/191 mandatory
-Altogether:  35.92%
-Mandatory: 35.92%
-Optional: no optional tasks
-Background Context
-Environment variables will be your best friend for this project!
+Concepts
+For this project, we expect you to look at this concept:
 
-HBNB_ENV: running environment. Itfor thesoon!) productionmoment ( testcanor  devbe 
-HBNB_MYSQL_USER: the username of your MySQL
-HBNB_MYSQL_PWD: the password of your MySQL
-HBNB_MYSQL_HOST: the hostname of your MySQL
-HBNB_MYSQL_DB: the database name of your MySQL
-HBNB_TYPE_STORAGE: the type of storage used. It can(using FileStorage) or db (using DBStorage) filebe 
+AirBnB clone
 Resources
 Read or watch:
 
-cmd module
-packages concept page
-unittest module
-args/kwargs
-SQLAlchemy tutorial
-How To Create a New User and Grant Permissions in MySQL
-Python3 and environment variables
-SQLAlchemy
-MySQL 8.0 SQL Statement Syntax
+What is a Web Framework?
+A Minimal Application
+Routing (HTTP Methodsexcept 
+Rendering Templates
+Synopsis
+Variables
+Comments
+Whitespace Control
+List of Control Structures (read up Callto 
+Flask
+Jinja
+Recommended YouTube playlist to get you started
+
 Learning Objectives
 At the end of this project, you are expected to be able to explain to anyone, without the help of Google:
 
 General
-What is Unit testing and how to implement it in a large project
-What is *args and how to use it
-What is **kwargs and how to use it
-How to handle named arguments in a function
-How to create a MySQL database
-How to create a MySQL user and grant it privileges
-What ORM means
-How to map a Python Class to a MySQL table
-How to handle 2 different storage engines with the same codebase
-How to use environment variables
+What is a Web Framework
+How to build a web framework with Flask
+How to define routes in Flask
+What is a route
+How to handle variables in a route
+What is a template
+How to create a HTML response in Flask by using a template
+How to create a dynamic template (loops, )conditions
+How to display in HTML data from a MySQL database
