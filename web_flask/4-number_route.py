@@ -21,7 +21,7 @@ def display_hbnb():
 def display_c(text):
     """returns args"""
     args = text.replace("_", " ")
-    return f"C {args}"
+    return "C {}".format(args)
 
 
 @app.route("/python/", strict_slashes=False)
@@ -29,13 +29,13 @@ def display_c(text):
 def display_python(text="is cool"):
     """returns args with default value"""
     args = text.replace("_", " ")
-    return f"Python {args}"
+    return "Python {}".format(args)
 
 
 @app.route("/number/<int:n>", strict_slashes=False)
 def number(n):
-    """display “n is a number” only if n is an integer"""
-    return f"{n} is a number"
+    """display  only if n is an integer"""
+    return "{} is a number".format(n)
 
 
 if __name__ == "__main__":
