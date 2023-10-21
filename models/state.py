@@ -26,6 +26,16 @@ class State(BaseModel, Base):
                 cities.append(each)
             return cities
 
+    @property
+    def cities(self):
+        """Getter method to retrieve a list of City objects linked to this State"""
+        city_list = []
+        for city in models.storage.all(City).values():
+            if city.state_id == self.id:
+                city_list.append(city)
+                return city_list
+
+
     if os.getenv('HBNB_TYPE_STORAGE') == 'db':
         cities = relationship("City", cascade="all, delete-orphan",
                               backref="state")
